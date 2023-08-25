@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletim Escolar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .reprovado {
+            color: red;
+        }
+        .recuperacao {
+            color: yellow;
+        }
+        .aprovado {
+            color: green;
+        }
+        .resultado {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Boletim Escolar</h1>
+    <table>
+        <tr>
+            <th>Materia</th>
+            <th>Bimestre 1</th>
+            <th>Bimestre 2</th>
+            <th>Bimestre 3</th>
+            <th>Bimestre 4</th>
+        </tr>
+        <tr>
+            <td>Portugues</td>
+            <td><input type="number" id="notaPortugues1"></td>
+            <td><input type="number" id="notaPortugues2"></td>
+            <td><input type="number" id="notaPortugues3"></td>
+            <td><input type="number" id="notaPortugues4"></td>
+        </tr>
+        <tr>
+            <td>Matematica</td>
+            <td><input type="number" id="notaMatematica1"></td>
+            <td><input type="number" id="notaMatematica2"></td>
+            <td><input type="number" id="notaMatematica3"></td>
+            <td><input type="number" id="notaMatematica4"></td>
+        </tr>
+        <tr>
+            <td>Biologia</td>
+            <td><input type="number" id="notaBiologia1"></td>
+            <td><input type="number" id="notaBiologia2"></td>
+            <td><input type="number" id="notaBiologia3"></td>
+            <td><input type="number" id="notaBiologia4"></td>
+        </tr>
+        <tr>
+            <td>Quimica</td>
+            <td><input type="number" id="notaQuimica1"></td>
+            <td><input type="number" id="notaQuimica2"></td>
+            <td><input type="number" id="notaQuimica3"></td>
+            <td><input type="number" id="notaQuimica4"></td>
+        </tr>
+        <tr>
+            <td>Fisica</td>
+            <td><input type="number" id="notaFisica1"></td>
+            <td><input type="number" id="notaFisica2"></td>
+            <td><input type="number" id="notaFisica3"></td>
+            <td><input type="number" id="notaFisica4"></td>
+        </tr>
+    </table>
+    <button onclick="calcularMedia()">Calcular Médias</button>
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        function calcularMedia() {
+            var materias = ['Portugues', 'Matematica', 'Biologia', 'Quimica', 'Fisica'];
+            var notas = {};
+
+            materias.forEach(materia => {
+                notas[materia] = [];
+                for (var i = 1; i <= 4; i++) {
+                    notas[materia].push(parseFloat(document.getElementById(`nota${materia}${i}`).value));
+                }
+            });
+
+            var resultado = document.getElementById("resultado");
+            resultado.innerHTML = '<h2>Situação do Aluno</h2>';
+
+            var somaTotal = 0;
+
+            materias.forEach(materia => {
+                var somaNotas = notas[materia].reduce((total, nota) => total + nota, 0);
+                var media = somaNotas / 4;
+                somaTotal += media;
+
+                if (media < 10) {
+                    resultado.innerHTML += `<p>${materia}: ${media.toFixed(2)} - <span class="reprovado">Reprovado</span></p>`;
+                } else if (media < 15) {
+                    resultado.innerHTML += `<p>${materia}: ${media.toFixed(2)} - <span class="recuperacao">Recuperação</span></p>`;
+                } else {
+                    resultado.innerHTML += `<p>${materia}: ${media.toFixed(2)} - <span class="aprovado">Aprovado</span></p>`;
+                }
+            });
+
+            if (somaTotal < 160) {
+                resultado.innerHTML += '<p>Total: <span class="reprovado">Reprovado</span></p>';
+            } else if (somaTotal < 240) {
+                resultado.innerHTML += '<p>Total: <span class="recuperacao">Recuperação</span></p>';
+            } else {
+                resultado.innerHTML += '<p>Total: <span class="aprovado">Aprovado</span></p>';
+            }
+        }
+    </script>
+</body>
+</html>
