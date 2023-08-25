@@ -1,35 +1,116 @@
+// Função para calcular a média
 
-function criarBoletim() {
-    const boletimTableBody = document.getElementById("boletimTableBody");
-  
-    const rowAluno = document.createElement("tr");
-    rowAluno.innerHTML = `<th rowspan="${disciplinas.length + 2}">${aluno.nome}</th>`;
-    boletimTableBody.appendChild(rowAluno);
-  
-    disciplinas.forEach((disciplina, index) => {
-      const rowDisciplina = document.createElement("tr");
-      rowDisciplina.innerHTML = `
-        <td>${disciplina}</td>
-        ${aluno.notas[index].map(nota => `<td>${nota}</td>`).join('')}
-        <td>${aluno.notas[index].reduce((total, nota) => total + nota, 0)}</td>
-        <td>${(aluno.notas[index].reduce((total, nota) => total + nota, 0) / aluno.notas[index].length).toFixed(2)}</td>
-        <td class="${definirStatus(aluno.notas[index].reduce((total, nota) => total + nota, 0))}">${definirStatus(aluno.notas[index].reduce((total, nota) => total + nota, 0))}</td>
-      `;
-      boletimTableBody.appendChild(rowDisciplina);
-    });
-  
-    const rowTotal = document.createElement("tr");
-    const somaTotal = calcularSomaBimestres(aluno.notas);
-    const mediaTotal = (calcularSomaBimestres(aluno.notas) / (aluno.notas.length * aluno.notas[0].length)).toFixed(2);
-    rowTotal.innerHTML = `
-      <th>Total</th>
-      ${aluno.notas[0].map((_, index) => `<th>${aluno.notas.reduce((sum, bimestres) => sum + bimestres[index], 0)}</th>`).join('')}
-      <th>${somaTotal}</th>
-      <th>${mediaTotal}</th>
-      <th class="${definirStatus(somaTotal)}">${definirStatus(somaTotal)}</th>
-    `;
-    boletimTableBody.appendChild(rowTotal);
+function calcularMedia(notas) {
+
+  return notas.reduce((sum, nota) => sum + nota, 0) / notas.length;
+
+}
+
+
+
+// Função para determinar a situação do aluno
+
+function verificarSituacao(media) {
+
+  if (media >= 15.0) {
+
+    return 'rgb(0, 128, 0) Aprovado';
+
+  } else if (media >= 10.0) {
+
+    return 'rgb(255, 255, 0)  Recuperação';
+
+  } else {
+
+    return 'rgb(255, 0, 0) Reprovado';
+
   }
-  
-  criarBoletim();
-  
+
+}
+
+
+
+// Lista de alunos
+
+let listaAlunos = [];
+
+
+
+while (true) {
+
+  let nomeAluno = prompt("Digite o nome do aluno (ou 0 para sair):");
+
+
+
+  if (nomeAluno === "0") {
+
+    break; // Encerrar o loop quando for digitado "0"
+
+  }
+
+
+
+  let notas = {
+
+    Matemática: [],
+
+    Português: [],
+
+    Física: [],
+
+    Química: [],
+
+    Biologia: []
+
+  };
+
+
+
+  for (let bimestre = 1; bimestre <= 4; bimestre++) {
+
+    for (let disciplina in notas) {
+
+      let nota = parseFloat(prompt('Digite a nota de ' + disciplina + ' no ' + bimestre + 'º bimestre para o aluno ' + nomeAluno + ': ' ));
+
+      notas[disciplina].push(nota);
+
+    }
+
+  }
+
+
+
+  let aluno = {
+
+    nome: nomeAluno,
+
+    notas: notas
+
+  };
+
+
+
+  listaAlunos.push(aluno);
+
+}
+
+
+
+// Exibir resultados
+
+for (let aluno of listaAlunos) {
+
+  document.write( '<br>' + '<br>' + 'Aluno:  ' + aluno.nome);
+
+  for (let disciplina in aluno.notas) {
+
+    let mediaDisciplina = calcularMedia(aluno.notas[disciplina]);
+
+    let situacao = verificarSituacao(mediaDisciplina);
+
+    document.write('</br> '  + disciplina + ':    ' + '    Média   ' + mediaDisciplina.toFixed(2) + '  Situação:    ' + situacao );
+
+  }
+
+}
+
