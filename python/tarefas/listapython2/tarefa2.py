@@ -1,6 +1,3 @@
-
-
-
 '''Supondo que a população de um país A seja da ordem de 80000 habitantes com uma taxa anual de 
 crescimento de 3% e que a população de B seja 200000 habitantes com uma taxa de crescimento de 
 1.5%. Faça um programa que calcule e escreva o número de anos necessários para que a população do 
@@ -9,24 +6,31 @@ país A ultrapasse ou iguale a população do país B, mantidas as taxas de cres
 
 
 pais_A = 80000
+taxa_crescimento_A = 0.03
+
+
+
 pais_B = 200000
+taxa_crescimento_B = 0.015
+
+ano = 0
+
+# Enquanto pais_A menor que pais_B
+while pais_A < pais_B:
+    pais_A += pais_A * taxa_crescimento_A # pais_A = pais_A + pais_A * taxa_crescimento_A
+    pais_B += pais_B * taxa_crescimento_B # pais_B = pais_B + pais_B * taxa_crescimento_B
+    ano += 1
+
+print("A população do país A ultrapassou a população do país B em ", ano, "anos")
 
 
-crescimento_A = int((pais_A * 0.03) /100)   #24 pessoas
-crescimento_B = int((pais_B * 0.015) /100)  #30 pessoas
-
-calculo_A = pais_A + crescimento_A
-calculo_B = pais_B + crescimento_B
 
 
 
 
-# faça (80000 + 24) (200000 + 30) até A ser maior ou igual a B
 
-while calculo_A <= calculo_B:
-    pais_A += crescimento_A
-    break
-    print(pais_A)
+
+
   
 
 
