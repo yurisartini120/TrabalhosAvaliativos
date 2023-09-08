@@ -29,3 +29,4 @@ print("-----------------------------")
 for produto, preco in tabela_de_precos.items():  
     print(f"{produto} - R$ {preco}")
 print("-----------------------------")
+

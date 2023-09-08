@@ -19,5 +19,3 @@ while contador > 0:
 print("{}".format(fatorial)) # imprime o resultado fatorial   
     
 
-
-

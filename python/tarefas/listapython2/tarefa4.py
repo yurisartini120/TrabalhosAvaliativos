@@ -3,7 +3,7 @@ usuário deve informar de qual numero ele deseja ver a tabuada.'''
 
 
 
-numero = int(input("Digite um para a taboada: "))
+numero = int(input("Digite um numero para a taboada: "))
 
 for i in range(1, 11):
     print(numero, "x", i, "=", numero * i)
