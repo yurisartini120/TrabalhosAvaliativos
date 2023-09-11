@@ -11,24 +11,19 @@ permitindo que o usuário digite o salário inicial do funcionário.
 
 '''
 
-ano_contratacao = 1995
-salario_inicial = 1000.00
 
-primeiro_aumento = 1996
+salario_inicial = float(input("DIgite seu salario inicial"))
+
+
 aumento = 0.015
-
 
 ano_atual = 2023
 
-aumento_dobrado = 0
 
+for ano in range(ano_atual - 1996):
 
-while primeiro_aumento < ano_atual:
-    aumento_dobrado = aumento * 2
+    aumento *= 2
+    salario_atual = salario_inicial + salario_inicial * aumento
 
-
-print("seu salario atual é de", aumento_dobrado)    
-
-
-
+print(f"Salario atual do funcionario: {salario_atual:.2f}")
 
