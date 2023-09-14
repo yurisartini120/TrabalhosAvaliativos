@@ -8,5 +8,5 @@ for numero in numeros :
     multiplicacao *= numero
 
 print("a soma dos numeros é:", soma)
-print("\n e a multiplicação dos numeros é:", multiplicacao)    
+print("e a multiplicação dos numeros é:", multiplicacao)    
 
