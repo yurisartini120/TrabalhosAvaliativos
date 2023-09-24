@@ -1,19 +1,20 @@
 print("contador de consoantes e vogais")
-
-def contar_vogais():
-    texto = input("Digite uma frase: ")
-    vogais = 0
-    consoantes = 0
+print("------------------------------")
+texto = input("Digite uma palavra para contarmos as vogais e consoantes: ") .lower()
+consoante = 0
+vogais = 0
+print("------------------------------")
+def contar_vogais(texto, consoante, vogais):
     
-    for letra in texto:
-        if letra in vogais:
+    for caracter in texto:
+        if caracter in 'aeiou':
             vogais += 1
+        else:
+            consoante += 1
 
-        elif letra in consoantes:
-            consoantes += 1
+    print(texto)
+    print(consoante)
+    print(vogais)
 
-    print(f"Vogais: {vogais}")
-    print(f"Consoantes: {consoantes}")
-
-print(contar_vogais())
+print(contar_vogais(texto, consoante, vogais))
 
