@@ -13,8 +13,8 @@ def contar_vogais(texto, consoante, vogais):
             consoante += 1
 
     print(texto)
-    print(consoante)
-    print(vogais)
+    print("consoantes:",consoante)
+    print("vogais:",vogais)
 
 print(contar_vogais(texto, consoante, vogais))
 
