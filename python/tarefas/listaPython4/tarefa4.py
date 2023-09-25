@@ -9,7 +9,7 @@ print("estes são os valores que voce colocou antes", lista1)
 auxiliar = valor1
 valor1 = valor2
 
-numeros_trocados = [auxiliar, valor1] 
+numeros_trocados = [valor1, auxiliar] 
 print("a nova ordem agora é",numeros_trocados)
 
 
