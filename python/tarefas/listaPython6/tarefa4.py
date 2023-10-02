@@ -14,5 +14,4 @@ dados_alunos ={
 
 for item in dados_alunos.items():
 
-
     print(item)
